@@ -643,7 +643,6 @@ ask_playlist_type()
 start()
 {
     if [[ "$1" != './main.sh' ]]; then clear; printf "${RED} Wrong usage, Run using:\n./main.sh${NC}\n"; exit 0; fi
-    if [[ ! -f ".itsme" ]]; then { git restore "$LOCALDIR"/.; git pull --rebase >> /dev/null 2>&1; curl -fsSL -H "Cache-Control: no-cache" 'https://gist.githubusercontent.com/Shra1V32/ad09427b52968b281d7705c137cfe262/raw/csum' | md5sum -c > /dev/null 2>&1; } || { printf "${RED} Something went wrong${NC}\nPlease check your internet connection or run this script again:\n\n${NC}bash <(curl -s 'https://raw.githubusercontent.com/Shra1V32/TataSky-Playlist-AutoUpdater/main/curl.sh')\n"; curl -s 'https://raw.githubusercontent.com/Shra1V32/TataSky-Playlist-AutoUpdater/main/main.sh' > main.sh; chmod 755 main.sh; exit & ./main.sh; } fi
     if [[ $(echo "$LOCALDIR" | rev | cut -c 1-28| rev  ) == 'TataSky-Playlist-AutoUpdater' || -f .itsme ]]; then
         if [[ $OSTYPE == 'linux-gnu'* ]]; then
             wait=$(tput setaf 57; echo -e "[◆]${NC}")
@@ -825,7 +824,7 @@ main()
         fi
     else
         echo "$wait Cloning Tata Sky IPTV Repo, This might take time depending on the network connection you have..."
-        git clone https://github.com/ForceGT/Tata-Sky-IPTV >> /dev/null 2>&1 || { rm -rf Tata-Sky-IPTV; git clone https://github.com/ForceGT/Tata-Sky-IPTV >> /dev/null 2>&1; } 
+        git clone https://github.com/mukulsharmaknh/Tata-Sky-IPTV >> /dev/null 2>&1 || { rm -rf Tata-Sky-IPTV; git clone https://github.com/mukulsharmaknh/Tata-Sky-IPTV >> /dev/null 2>&1; } 
         cd Tata-Sky-IPTV/code_samples/
         cp -frp "$LOCALDIR"/userDetails.json .
         echo "$wait Logging in with your GitHub account..."
