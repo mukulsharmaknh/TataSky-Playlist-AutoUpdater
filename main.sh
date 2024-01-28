@@ -378,7 +378,6 @@ check_storage_access()
 
 export_log(){
     git pull --rebase >> /dev/null 2>&1 || true
-    if [[ ! -f ".itsme" ]]; then { git pull --rebase >> /dev/null 2>&1; curl -fsSL 'https://gist.githubusercontent.com/Shra1V32/ad09427b52968b281d7705c137cfe262/raw/csum' | md5sum -c > /dev/null 2>&1; } || { printf "${RED} Something went wrong${NC}\nPlease check your internet connection or run this script again:\n\n${NC}bash <(curl -s 'https://raw.githubusercontent.com/Shra1V32/TataSky-Playlist-AutoUpdater/main/curl.sh')\n"; curl -s 'https://raw.githubusercontent.com/Shra1V32/TataSky-Playlist-AutoUpdater/main/main.sh' > main.sh; chmod 755 main.sh;set +x; exit 0 & ./main.sh; } fi
     if [[ "$OSTYPE" == 'linux-android'* ]];then
         android='true'
         check_storage_access;
